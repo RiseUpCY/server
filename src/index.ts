@@ -1,18 +1,25 @@
-// const Koa = require('koa')
-// const Router = require('koa-router')
 import * as Koa from 'koa'
-import * as Router from 'koa-router'
-
 const app = new Koa()
-const router = new Router()
+const http = require('http').createServer(app.callback())
+const IO = require('socket.io')(http)
 
-console.log(process.env.PORT, process.env.NODE_ENV)
-router.get('/*', async (ctx) => {
-  ctx.body = 'Hellow World !'
+import bindSocket from './socket/index'
+import bindCommon from './middlewrae/common'
+import mapRoutes from './routes/index'
+
+// 绑定socket通信
+bindSocket(IO)
+
+// 绑定公有中间件 跨域 消息体解析 静态文件等
+bindCommon(app)
+
+// 路由分发
+mapRoutes(app)
+
+const PORT = process.env.PORT ? process.env.PORT : 3030
+
+http.listen(PORT, () => {
+  console.log(`server is listening in port ${PORT}`)
 })
 
-app.use(router.routes())
-
-app.listen(3000)
-
-console.log('Server is runing !!')
+// console.log(process.env.PORT, process.env.NODE_ENV)
