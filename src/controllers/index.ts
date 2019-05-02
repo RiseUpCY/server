@@ -17,6 +17,10 @@ const makeDir = (d: string) => {
         if (path.extname(file) === '.ts') {
             tree[path.basename(file, '.ts')] = require(path.join(d, file)) 
         }
+        // 兼容打包后
+        if (path.extname(file) === '.js') {
+            tree[path.basename(file, '.js')] = require(path.join(d, file)) 
+        }
     })
     return tree
 }
