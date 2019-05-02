@@ -21,5 +21,4 @@ const PORT = process.env.PORT ? process.env.PORT : 3030
 http.listen(PORT, () => {
   console.log(`server is listening in port ${PORT}`)
 })
-
 // console.log(process.env.PORT, process.env.NODE_ENV)

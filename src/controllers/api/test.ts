@@ -1,4 +1,5 @@
 const get = async (ctx: any) => {
+    console.log(ctx.env)
     ctx.body = 'api route test '
 }
 export {

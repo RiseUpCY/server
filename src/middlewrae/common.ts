@@ -24,14 +24,14 @@ function bindMiddleWare(app: any): void {
       // allowHeaders: ['Content-Type', 'Authorization', 'Accept']
     })
   )
-  
   // 解析消息体
   app.use(bodyparser())
+  
+  // 响应格式中间件
+  app.use(require('./response'))
 
   // 读取静态文件 运行目录为 基础路径
   app.use(koaStatic('src/public'))
 
-  // 响应格式中间件
-  app.use(require('./response'))
 }
 export default bindMiddleWare
