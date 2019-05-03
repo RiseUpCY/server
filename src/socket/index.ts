@@ -6,6 +6,7 @@ function bindEvent(IO: any) {
     })
     socket.on('chat message', (msg: any) => {
       console.log('收到' + msg)
+      socket.emit('message', '服务器:我收到你发来的信息 ++ ' + msg)
     })
   })
 }

@@ -32,6 +32,7 @@ function bindMiddleWare(app: any): void {
 
   // 读取静态文件 运行目录为 基础路径
   app.use(koaStatic('src/public'))
+  app.use(koaStatic('static'))
 
 }
 export default bindMiddleWare
